@@ -8,6 +8,7 @@ export default class InsertValue extends Shortcut {
         super();
         this.metadata = metadata;
         this.text = null;
+        this.originalText = null;
         this.patient = patient;
         this._wasRemovedFromContext = false;
         this._shouldRemoveFromContext = false;
@@ -175,7 +176,7 @@ export default class InsertValue extends Shortcut {
     }
 
     getLabel() {
-        return this.getText();
+        return this.getOriginalText() ? this.getOriginalText() : this.getText();
     }
 
     getId() {
@@ -225,6 +226,14 @@ export default class InsertValue extends Shortcut {
 
     setText(text) {
         this.text = text;
+    }
+
+    setOriginalText(text) {
+        this.originalText = text;
+    }
+
+    getOriginalText() {
+        return this.originalText;
     }
 
     setValueObject(valueObject) {
